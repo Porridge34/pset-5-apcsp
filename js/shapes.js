@@ -1,21 +1,28 @@
 window.onload = function() {
-    // add event listeners to respond to button clicks
+  document.getElementById("hello-student").addEventListener("click", function() {
+alert("Hello World!");
+});
 }
 
 /*
  * Exercise 1.
  */
 
-const sayHello = function() {
-
-};
+function sayHello() {
+  alert("it worked");
+  let hello = document.getElementById("student-canvas-1");
+  let word = hello.getContext("2d");
+  let wordInput = window.prompt("eeeeeeeeeeee", "eeeeeee");
+  word.font = "48px san-serif";
+  word.fillText(wordInput, 10, 50);
+}
 
 /*
  * Exercise 2.
  */
 
 const drawRectangle = function() {
-    
+
 };
 
 /*
@@ -23,7 +30,7 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-    
+
 };
 
 /*
@@ -31,7 +38,7 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-    
+
 };
 
 /*
@@ -39,7 +46,7 @@ const drawTriangle = function() {
  */
 
 const drawFace = function() {
-    
+
 };
 
 /*
@@ -47,5 +54,5 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-    
+
 };
