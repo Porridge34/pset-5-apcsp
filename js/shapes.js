@@ -1,9 +1,4 @@
 window.onload = function() {
-<<<<<<< HEAD
-  document.getElementById("hello-student").addEventListener("click", function() {
-alert("Hello World!");
-});
-=======
     document.getElementById("hello-sample").onclick = sayHelloStaff;
     document.getElementById("rectangle-sample").onclick = drawRectangleStaff;
     document.getElementById("colored-rectangle-sample").onclick = drawColoredRectangleStaff;
@@ -24,38 +19,41 @@ alert("Hello World!");
     // equivalent set of six event listeners for your solutions. the first one is done for you.
 
     document.getElementById("hello").onclick = sayHello;
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
+    document.getElementById("rectangle").onclick = sayHello;
 }
 
 /*
  * Exercise 1.
  */
 
-<<<<<<< HEAD
-function sayHello() {
-  alert("it worked");
+
+const sayHello = function() {
   let hello = document.getElementById("student-canvas-1");
   let word = hello.getContext("2d");
-  let wordInput = window.prompt("eeeeeeeeeeee", "eeeeeee");
-  word.font = "48px san-serif";
-  word.fillText(wordInput, 10, 50);
-}
-=======
-const sayHello = function() {
-    // write your exercise 1 code here
+  word.clearRect(0, 0, hello.width, hello.height);
+  let wordInput = "";
+  let x = true;
+  while (x == true){
+    wordInput = window.prompt("Message: ", "");
+    if (wordInput.length > 50){
+      alert("Your message is too long. Please enter another message under 50 characters.");
+    }else {
+      x = false
+    }
+  }
+  word.font = "48px sans-serif";
+  word.strokeText(wordInput, 30, 70);
 };
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
 
 /*
  * Exercise 2.
  */
 
 const drawRectangle = function() {
-<<<<<<< HEAD
-
-=======
-    // write your exercise 2 code here
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
+  let canvasRectangle = document.getElementById("student-canvas-2");
+  let rectangle = canvasRectangle.getContext("2d");
+  rectangle.clearRect(0, 0, canvasRectangle.width, canvasRectangle.height);
+  let wordInput = window.prompt("Message: ", "");
 };
 
 /*
@@ -63,11 +61,9 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-<<<<<<< HEAD
 
-=======
     // write your exercise 3 code here
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
+
 };
 
 /*
@@ -75,11 +71,9 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-<<<<<<< HEAD
 
-=======
     // write your exercise 4 code here
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
+
 };
 
 /*
@@ -87,11 +81,8 @@ const drawTriangle = function() {
  */
 
 const drawFace = function() {
-<<<<<<< HEAD
 
-=======
-    // write your exercise 4 code here
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
+
 };
 
 /*
@@ -99,10 +90,5 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-<<<<<<< HEAD
 
 };
-=======
-    // write your exercise 5 code here
-};
->>>>>>> 15938bf39968e1c927974e43ff129a43379a28ee
