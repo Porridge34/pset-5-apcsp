@@ -19,8 +19,9 @@ window.onload = function() {
     // equivalent set of six event listeners for your solutions. the first one is done for you.
 
     document.getElementById("hello").onclick = sayHello;
-    document.getElementById("rectangle").onclick = sayHello;
-}
+    document.getElementById("rectangle").onclick = drawRectangle;
+    document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
+  }
 
 /*
  * Exercise 1.
@@ -31,18 +32,18 @@ const sayHello = function() {
   let hello = document.getElementById("student-canvas-1");
   let word = hello.getContext("2d");
   word.clearRect(0, 0, hello.width, hello.height);
+  word.font = "48px sans-serif";
   let wordInput = "";
-  let x = true;
-  while (x == true){
+  let run = true;
+  while (run == true){
     wordInput = window.prompt("Message: ", "");
     if (wordInput.length > 50){
       alert("Your message is too long. Please enter another message under 50 characters.");
-    }else {
-      x = false
+    } else {
+      run = false
     }
   }
-  word.font = "48px sans-serif";
-  word.strokeText(wordInput, 30, 70);
+  word.strokeText(wordInput, 30, 70, 940);
 };
 
 /*
@@ -53,7 +54,31 @@ const drawRectangle = function() {
   let canvasRectangle = document.getElementById("student-canvas-2");
   let rectangle = canvasRectangle.getContext("2d");
   rectangle.clearRect(0, 0, canvasRectangle.width, canvasRectangle.height);
-  let wordInput = window.prompt("Message: ", "");
+  let run = true;
+  while(run == true){
+    let width = window.prompt("Width: ", "");
+    let height = window.prompt("Height: ", "");
+    let rectX = window.prompt("x: ", "");
+    let rectY = window.prompt("y: ", "");
+    if(isNaN(width) == true || isNaN(height) == true || isNaN(rectX) == true || isNaN(rectY) == true){
+      alert("At least one of the values was not a number. Please try again.");
+    }else if(height == null || width == null || rectX == null || rectY == null){
+      run = false;
+    }else if(height > 512 || height < 1){
+      alert("The height must be between 1 and 512.");
+    }else if(width > 1024 || width < 1){
+      alert("The width must be between 1 and 1024.");
+    }else if(rectX > 1024 || rectX < 1){
+      alert("The x-coordinate must be between 1 and 1024.");
+    }else if(rectY > 512 || rectY < 1){
+      alert("The y-coordinate must be between 1 and 512.");
+    }else {
+      rectangle.beginPath();
+      rectangle.rect(rectX, rectY, width, height);
+      rectangle.stroke();
+      run = false;
+    }
+  }
 };
 
 /*
@@ -61,9 +86,57 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-
-    // write your exercise 3 code here
-
+    let canvasColored = document.getElementById("student-canvas-3");
+    let colored = canvasColored.getContext("2d");
+    colored.clearRect(0, 0, canvasColored.width, canvasColored.height);
+    let run = true;
+    let color = null;
+    while (run == true){
+      color = window.prompt("Color: ");
+      color = color.toLowerCase();
+      color = color.trim();
+      switch (color){
+        case "black":
+          colored.fillStyle = "black";
+          run = false;
+          break;
+        case "blue":
+          colored.fillStyle = "blue";
+          run = false;
+          break;
+        case "orange":
+          colored.fillStyle = "orange";
+          run = false;
+          break;
+        case "green":
+          colored.fillStyle = "green";
+          run = false;
+          break;
+        case "purple":
+          colored.fillStyle = "purple";
+          run = false;
+          break;
+        case "yellow":
+          colored.fillStyle = "yellow";
+          run = false;
+          break;
+        case "red":
+          colored.fillStyle = "red";
+          run = false;
+          break;
+        case null:
+          run = false;
+          break;
+        default:
+          alert("That is not a supported color. Try again.");
+          break;
+      }
+    }
+    if(color != null){
+      colored.beginPath();
+      colored.rect(10, 10, 100, 50);
+      colored.fill();
+    }
 };
 
 /*
@@ -71,7 +144,7 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-
+  let drawTriangle =
     // write your exercise 4 code here
 
 };
