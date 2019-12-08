@@ -21,6 +21,8 @@ window.onload = function() {
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
+    document.getElementById("triangle").onclick = drawTriangle;
+    document.getElementById("smile").onclick = drawFace;
   }
 
 /*
@@ -72,6 +74,8 @@ const drawRectangle = function() {
       alert("The x-coordinate must be between 1 and 1024.");
     }else if(rectY > 512 || rectY < 1){
       alert("The y-coordinate must be between 1 and 512.");
+    }else if ((Number(rectX) + Number(width)) > 1024 || (Number(rectY) + Number(height)) > 512){
+      alert("The rectangle does not fit on the screen.");
     }else {
       rectangle.beginPath();
       rectangle.rect(rectX, rectY, width, height);
@@ -86,57 +90,57 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-    let canvasColored = document.getElementById("student-canvas-3");
-    let colored = canvasColored.getContext("2d");
-    colored.clearRect(0, 0, canvasColored.width, canvasColored.height);
-    let run = true;
-    let color = null;
-    while (run == true){
-      color = window.prompt("Color: ");
-      color = color.toLowerCase();
-      color = color.trim();
-      switch (color){
-        case "black":
-          colored.fillStyle = "black";
-          run = false;
-          break;
-        case "blue":
-          colored.fillStyle = "blue";
-          run = false;
-          break;
-        case "orange":
-          colored.fillStyle = "orange";
-          run = false;
-          break;
-        case "green":
-          colored.fillStyle = "green";
-          run = false;
-          break;
-        case "purple":
-          colored.fillStyle = "purple";
-          run = false;
-          break;
-        case "yellow":
-          colored.fillStyle = "yellow";
-          run = false;
-          break;
-        case "red":
-          colored.fillStyle = "red";
-          run = false;
-          break;
-        case null:
-          run = false;
-          break;
-        default:
-          alert("That is not a supported color. Try again.");
-          break;
-      }
+  let canvasColored = document.getElementById("student-canvas-3");
+  let colored = canvasColored.getContext("2d");
+  colored.clearRect(0, 0, canvasColored.width, canvasColored.height);
+  let run = true;
+  let color = null;
+  while (run == true){
+    color = window.prompt("Color: ");
+    color = color.toLowerCase();
+    color = color.trim();
+    switch (color){
+      case "black":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "blue":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "orange":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "green":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "purple":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "yellow":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case "red":
+        colored.fillStyle = color;
+        run = false;
+        break;
+      case null:
+        run = false;
+        break;
+      default:
+        alert("That is not a supported color. Try again.");
+        break;
     }
-    if(color != null){
-      colored.beginPath();
-      colored.rect(10, 10, 100, 50);
-      colored.fill();
-    }
+  }
+  if(color != null){
+    colored.beginPath();
+    colored.rect(10, 10, 100, 50);
+    colored.fill();
+  }
 };
 
 /*
@@ -144,9 +148,37 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-  let drawTriangle =
-    // write your exercise 4 code here
-
+  let triangleCanvas = document.getElementById("student-canvas-4");
+  let triangle = triangleCanvas.getContext("2d");
+  triangle.clearRect(0, 0, triangleCanvas.width, triangleCanvas.height);
+  let run = true;
+  while(run == true){
+    let side1 = window.prompt("Side 1: ", "");
+    let side2 = window.prompt("Side 2: ", "");
+    let side3 = window.prompt("Side 3: ", "");
+    (side3 >= side2)? side3 = side3 : side3 = side2;
+    (side3 >= side1)? side3 = side3 : side3 = side1;
+    (side2 >= side1)? side2 = side2 : side2 = side1;
+    if(isNaN(side1) == true || isNaN(side2) == true || isNaN(side3) == true){
+      alert("At least one of the values was not a number. Please try again.");
+    }else if(side3 == null || side2 == null || side1 == null){
+      run = false;
+    }else if(side1 > 1024 || side1 < 1 ||side2 > 1024 || side2 < 1 || side3 > 1024 || side3 < 1){
+      alert("The side must be between 1 and 1024.");
+    }else if ((25 + Number(side2)) > 1024 || (Number(side1)+25) > 512){
+      alert("The triangle does not fit on the screen.");
+    }else if(side3*side3 != side1*side1 + side2*side2){
+      alert("This triangle is invalid.");
+    }else {
+      triangle.beginPath();
+      triangle.moveTo(25,25);
+      triangle.lineTo(25,(25+Number(side1)));
+      triangle.lineTo((25+Number(side2)), (25+Number(side1)));
+      triangle.lineTo(25,25);
+      triangle.stroke();
+      run = false;
+    }
+  }
 };
 
 /*
@@ -154,8 +186,31 @@ const drawTriangle = function() {
  */
 
 const drawFace = function() {
-
-
+  let canvas = document.getElementById("student-canvas-5");
+  let ctx = canvas.getContext("2d");
+  let centerX = canvas.width/2;
+  let centerY = canvas.height/2;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let run = true;
+  while(run == true){
+    let radius = prompt("Radius:");
+    if(radius == null){
+      run = false;
+    }else if(radius < 32 || radius > centerY){
+      alert("The radius must be between 32 and " + centerY);
+    }else{
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2*Math.PI);
+      ctx.moveTo(centerX - radius*.25, centerY - radius*.4);
+      ctx.arc(centerX - radius*.4, centerY - radius*.4, radius*.15, 0, 2*Math.PI);
+      ctx.moveTo(centerX+radius*.55, centerY - radius*.4);
+      ctx.arc(centerX + radius*.4, centerY - radius*.4, radius*.15, 0, 2*Math.PI);
+      ctx.moveTo(centerX+radius*.7, centerY);
+      ctx.arc(centerX, centerY, radius*.7, 0, Math.PI);
+      ctx.stroke();
+      run = false;
+    }
+  }
 };
 
 /*
