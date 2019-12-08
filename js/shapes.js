@@ -23,6 +23,7 @@ window.onload = function() {
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
     document.getElementById("triangle").onclick = drawTriangle;
     document.getElementById("smile").onclick = drawFace;
+    document.getElementById("pyramid").onclick = drawPyramid;
   }
 
 /*
@@ -218,5 +219,29 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-
+  let canvas = document.getElementById("student-canvas-6");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let run = true;
+  while (run == true){
+    let sideLength = prompt("Side length: ");
+    if (sideLength == null){
+      run = false;
+    }else if(sideLength < 1){
+      alert("The side length must be greater or equal to 1.");
+    }else if (canvas.height < (sideLength * 5 + 10)){
+      alert("The pyramid does not fit on the canvas.");
+    }else {
+      ctx.beginPath();
+      let pyramidLevel = 0;
+      for (let i = 5; i > 0; i--){
+        for (let j = i; j > 0; j--){
+          ctx.rect(sideLength*(j-1)+10+sideLength*pyramidLevel/2, canvas.height-10-sideLength*(pyramidLevel+1), sideLength,sideLength);
+        }
+        pyramidLevel++;
+      }
+      ctx.stroke();
+      run = false;
+    }
+  }
 };
